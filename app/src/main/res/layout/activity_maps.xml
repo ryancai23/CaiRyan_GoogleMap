@@ -24,7 +24,7 @@
             android:text="View"></Button>
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editText_addr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
