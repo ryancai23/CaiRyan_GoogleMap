@@ -33,6 +33,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private EditText locationSearch;
     private Location myLocation;
+    private LocationManager locationManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,14 +102,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         try {
 
-            if (service != null) {
+            if (locationManager != null) {
                 Log.d("myMapsAppP1", "onSearch: locationManager is not null");
 
-                if ((myLocation = service.getLastKnownLocation(LocationManager.NETWORK_PROVIDER))) {
+                if ((myLocation = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER)) != null) {
                     userLocation = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
                     Log.d("myMapsAppP1", "onSearch: using the NETWORK_PROVIDER userLocation is: " + myLocation.getLatitude() + " " + myLocation.getLongitude());
                     Toast.makeText(this, "UserLoc" + myLocation.getLatitude() + " " + myLocation.getLongitude(), Toast.LENGTH_SHORT);
-                } else if ((myLocation = service.getLastKnownLocation(LocationManager.GPS_PROVIDER))) {
+                } else if ((myLocation = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER)) != null) {
                     userLocation = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
                     Log.d("myMapsAppP1", "onSearch: using the NETWORK_PROVIDER userLocation is: " + myLocation.getLatitude() + " " + myLocation.getLongitude());
                     Toast.makeText(this, "UserLoc" + myLocation.getLatitude() + " " + myLocation.getLongitude(), Toast.LENGTH_SHORT);
